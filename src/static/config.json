@@ -1,0 +1,65 @@
+{
+    "icao": "ZSSS",
+    "rwy": [
+        {
+            "direction": 183,
+            "suffix": "L",
+            "position": [
+                0.53,
+                0.45
+            ]
+        },
+        {
+            "direction": 183,
+            "suffix": "R",
+            "position": [
+                0.47,
+                0.45
+            ]
+        }
+    ],
+    "rwy_usage": {
+        "18L": 2,
+        "36R": 0,
+        "18R": 0,
+        "36L": 1
+    },
+    "waypoint": [
+        {
+            "name": "A",
+            "position": [
+                0.2,
+                0.2
+            ],
+            "usage": 1
+        },
+        {
+            "name": "B",
+            "position": [
+                0.8,
+                0.7
+            ],
+            "usage": 1
+        },
+        {
+            "name": "C",
+            "position": [
+                0.9,
+                0.2
+            ],
+            "usage": 2
+        }
+    ],
+    "std_arr": {
+        "A": [
+            "A"
+        ]
+    },
+    "std_dep": {
+        "B": [
+            "B"
+        ]
+    },
+    "arr_freq": 2,
+    "dep_freq": 1.5
+}
