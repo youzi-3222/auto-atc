@@ -29,6 +29,8 @@ class Aircraft:
     """高度，英尺。"""
     allow_height_ft: int
     """放行高度，英尺。"""
+    climb_rate: int
+    """爬升率，英尺 / 分钟。"""
     speed_kt: int
     """速度，节。"""
     route: Route

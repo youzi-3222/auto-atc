@@ -2,6 +2,9 @@
 语音管理。
 """
 
+from typing import Union
+
+
 _DIGIT_ZH = {
     "0": "洞",
     "1": "幺",
@@ -64,18 +67,22 @@ class Speech:
     """
 
     @staticmethod
-    def explain_zh(text: str) -> str:
+    def explain_zh(text: Union[str, object]) -> str:
         """
         将文本转换为中文语音格式。
         """
+        if isinstance(text, object):
+            text = str(text)
         text = "".join(_DIGIT_ZH.get(c, c) for c in text)
         return Speech._explain_alphabet(text)
 
     @staticmethod
-    def explain_en(text: str) -> str:
+    def explain_en(text: Union[str, object]) -> str:
         """
         将文本转换为英文语音格式。
         """
+        if isinstance(text, object):
+            text = str(text)
         text = " ".join(_DIGIT_EN.get(c, c) for c in text)
         return Speech._explain_alphabet(text)
 
@@ -83,4 +90,28 @@ class Speech:
     def _explain_alphabet(text: str) -> str:
         for char, repl in _ALPHABET.items():
             text = text.replace(char, f" {repl} ")
-        return text.replace("  ", " ").replace("  ", " ").strip()
+        return text.replace("  ", " ").replace("  ", " ").replace("  ", " ").strip()
+
+    @staticmethod
+    def explain_rwy_zh(rwy: str) -> str:
+        """
+        将跑道号转换为中文语音格式。
+        """
+        rwy = rwy.replace("L", "左").replace("R", "右").replace("C", "中")
+        return Speech.explain_zh(rwy)
+
+    @staticmethod
+    def explain_rwy_en(rwy: str) -> str:
+        """
+        将跑道号转换为英文语音格式。
+        """
+        suffix = None
+        match rwy[-1]:
+            case "L":
+                suffix = "left"
+            case "R":
+                suffix = "right"
+            case "C":
+                suffix = "center"
+
+        return Speech.explain_en(rwy[:2]) + (" " + suffix if suffix else "")

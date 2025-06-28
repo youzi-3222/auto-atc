@@ -3,53 +3,66 @@ import pytest
 from src.atc.core.speech import Speech
 
 
-@pytest.fixture
-def speech():
-    return Speech()
+@pytest.mark.parametrize(
+    "input_text,expected",
+    [
+        ("123", "幺两三"),
+        ("908", "九洞八"),
+        ("123.7", "幺两三点拐"),
+        ("7700", "拐拐洞洞"),
+        ("A1B2", "alpha 幺 bravo 两"),
+        ("Z9", "zulu 九"),
+        ("1 2", "幺 两"),
+        (" 3 ", "三"),
+        ("A B C", "alpha bravo charlie"),
+        ("", ""),
+    ],
+)
+def test_explain_zh(input_text: str, expected: str):
+    assert Speech.explain_zh(input_text) == expected
 
 
-def test_explain_zh_digits(speech: Speech):
-    assert speech.explain_zh("123") == "幺两三"
-    assert speech.explain_zh("908") == "九洞八"
-    assert speech.explain_zh("123.7") == "幺两三点拐"
-    assert speech.explain_zh("7700") == "拐拐洞洞"
+@pytest.mark.parametrize(
+    "input_text,expected",
+    [
+        ("123", "one two tree"),
+        ("908", "niner zero eight"),
+        ("121.5", "one two one decimal fife"),
+        ("7700", "seven seven zero zero"),
+        ("MH370", "mike hotel tree seven zero"),
+        ("AF447", "alpha foxtrot fower fower seven"),
+        ("P23S3", "papa two tree sierra tree"),
+        ("1 2", "one two"),
+        (" 3 ", "tree"),
+        ("A B C", "alpha bravo charlie"),
+        ("", ""),
+    ],
+)
+def test_explain_en(input_text: str, expected: str):
+    assert Speech.explain_en(input_text) == expected
 
 
-def test_explain_zh_mixed_alphanum(speech: Speech):
-    assert speech.explain_zh("A1B2") == "alpha 幺 bravo 两"
-    assert speech.explain_zh("Z9") == "zulu 九"
+@pytest.mark.parametrize(
+    "input_text,expected",
+    [
+        ("18L", "幺八左"),
+        ("36R", "三六右"),
+        ("09", "洞九"),
+        ("20C", "两洞中"),
+    ],
+)
+def test_explain_rwy_zh(input_text: str, expected: str):
+    assert Speech.explain_rwy_zh(input_text) == expected
 
 
-def test_explain_zh_empty(speech: Speech):
-    assert speech.explain_zh("") == ""
-
-
-def test_explain_zh_spaces(speech: Speech):
-    assert speech.explain_zh("1 2") == "幺 两"
-    assert speech.explain_zh(" 3 ") == "三"
-
-
-def test_explain_zh_letters_with_spaces(speech: Speech):
-    assert speech.explain_zh("A B C") == "alpha bravo charlie"
-
-
-def test_explain_en_digits(speech: Speech):
-    assert speech.explain_en("123") == "one two tree"
-    assert speech.explain_en("908") == "niner zero eight"
-    assert speech.explain_en("121.5") == "one two one decimal fife"
-    assert speech.explain_en("7700") == "seven seven zero zero"
-
-
-def test_explain_en_mixed_alphanum(speech: Speech):
-    assert speech.explain_en("MH370") == "mike hotel tree seven zero"
-    assert speech.explain_en("AF447") == "alpha foxtrot fower fower seven"
-    assert speech.explain_en("P23S3") == "papa two tree sierra tree"
-
-
-def test_explain_en_empty(speech: Speech):
-    assert speech.explain_en("") == ""
-
-
-def test_explain_en_spaces(speech: Speech):
-    assert speech.explain_en("1 2") == "one two"
-    assert speech.explain_en(" 3 ") == "tree"
+@pytest.mark.parametrize(
+    "input_text,expected",
+    [
+        ("18L", "one eight left"),
+        ("36R", "tree six right"),
+        ("09", "zero niner"),
+        ("12C", "one two center"),
+    ],
+)
+def test_explain_rwy_en(input_text: str, expected: str):
+    assert Speech.explain_rwy_en(input_text) == expected

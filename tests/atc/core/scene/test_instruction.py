@@ -1,11 +1,8 @@
 import pytest
+
+from src.atc.core.scene.aircraft.flight_info import FlightInfo
+from src.atc.core.scene.aircraft.wake import Wake
 from src.atc.core.scene.instruction import Instruction
-
-
-# Mock FlightInfo with only flight_no attribute
-class MockFlightInfo:
-    def __init__(self, flight_no):
-        self.flight_no = flight_no
 
 
 @pytest.mark.parametrize(
@@ -13,63 +10,115 @@ class MockFlightInfo:
     [
         (
             {
-                "flight": MockFlightInfo("ABC123"),
-                "heading": 270,
+                "flight": FlightInfo(
+                    6760, "IR", "655", True, "18L", "A30B", Wake.LIGHT
+                ),
+                "speed_old_kt": 250,
+                "alt_old_ft": 5000,
+                "use_m": False,
+                "heading": 175,
                 "turn_left": True,
                 "vector_to": None,
                 "speed_kt": 180,
-                "height_ft": 3000,
+                "alt_ft": 3000,
                 "clear_app_rwy": "18L",
             },
-            "ABC123，左转航向 270，速度 180，高度 3000，跑道 18L 可以进近。",
+            "IR655, turn left heading one seven fife, reduce speed one eight zero, descend to tree zero, cleared ILS runway one eight left.",
         ),
         (
             {
-                "flight": MockFlightInfo("DEF456"),
-                "heading": 90,
-                "turn_left": False,
+                "flight": FlightInfo(
+                    7700, "3U", "8633", True, "02R", "A319", Wake.LIGHT
+                ),
+                "speed_old_kt": 230,
+                "alt_old_ft": 6000,
+                "use_m": True,
+                "heading": None,
+                "turn_left": None,
+                "vector_to": ["MIKOS"],
+                "speed_kt": None,
+                "alt_ft": 4000,
+                "clear_app_rwy": None,
+            },
+            "四川八六三三，直飞 MIKOS，下高度幺两。",
+        ),
+        (
+            {
+                "flight": FlightInfo(
+                    7700, "3U", "8633", True, "02R", "A319", Wake.LIGHT
+                ),
+                "speed_old_kt": 230,
+                "alt_old_ft": 4000,
+                "use_m": True,
+                "heading": None,
+                "turn_left": None,
+                "vector_to": ["MIKOS"],
+                "speed_kt": 230,
+                "alt_ft": 4000,
+                "clear_app_rwy": None,
+            },
+            "四川八六三三，直飞 MIKOS。",
+        ),
+    ],
+)
+def test_instruction_speech(kwargs, expected):
+    instr = Instruction(**kwargs)
+    assert instr.speech == expected
+
+
+@pytest.mark.parametrize(
+    "kwargs,expected",
+    [
+        (
+            {
+                "flight": FlightInfo(
+                    6760, "IR", "655", True, "18L", "A30B", Wake.LIGHT
+                ),
+                "speed_old_kt": 250,
+                "alt_old_ft": 5000,
+                "use_m": False,
+                "heading": 175,
+                "turn_left": True,
                 "vector_to": None,
-                "speed_kt": None,
-                "height_ft": None,
-                "clear_app_rwy": None,
+                "speed_kt": 180,
+                "alt_ft": 3000,
+                "clear_app_rwy": "18L",
             },
-            "DEF456，右转航向 090。",
+            "IR655, turn left heading 175, reduce speed 180, descend to 3000 feet, cleared ILS runway 18L.",
         ),
         (
             {
-                "flight": MockFlightInfo("GHI789"),
+                "flight": FlightInfo(
+                    7700, "3U", "8633", True, "02R", "A319", Wake.LIGHT
+                ),
+                "speed_old_kt": 230,
+                "alt_old_ft": 6000,
+                "use_m": True,
                 "heading": None,
                 "turn_left": None,
-                "vector_to": ["WPT3"],
-                "speed_kt": 200,
-                "height_ft": None,
-                "clear_app_rwy": "36R",
+                "vector_to": ["MIKOS"],
+                "speed_kt": None,
+                "alt_ft": 4000,
+                "clear_app_rwy": None,
             },
-            "GHI789，直飞 WPT3，速度 200，跑道 36R 可以进近。",
+            "3U8633，直飞 MIKOS，下高度 1200 米。",
         ),
         (
             {
-                "flight": MockFlightInfo("JKL012"),
+                "flight": FlightInfo(
+                    7700, "3U", "8633", True, "02R", "A319", Wake.LIGHT
+                ),
+                "speed_old_kt": 230,
+                "alt_old_ft": 4000,
+                "use_m": True,
                 "heading": None,
                 "turn_left": None,
-                "vector_to": None,
-                "speed_kt": None,
-                "height_ft": None,
+                "vector_to": ["MIKOS"],
+                "speed_kt": 230,
+                "alt_ft": 4000,
                 "clear_app_rwy": None,
             },
-            "JKL012。",
-        ),
-        (
-            {
-                "flight": MockFlightInfo("MNO345"),
-                "heading": None,
-                "turn_left": None,
-                "vector_to": ["WPT4"],
-                "speed_kt": None,
-                "height_ft": 5000,
-                "clear_app_rwy": None,
-            },
-            "MNO345，直飞 WPT4，高度 5000。",
+            "3U8633，直飞 MIKOS。",
         ),
     ],
 )

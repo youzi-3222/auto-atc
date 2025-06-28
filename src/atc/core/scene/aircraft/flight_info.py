@@ -32,7 +32,7 @@ class FlightInfo:
     @property
     def flight_no(self) -> str:
         """航班号（航空公司二字代码 + 航班号数字）。"""
-        return f"{self.airline} {self.raw_flight_no}"
+        return f"{self.airline}{self.raw_flight_no}"
 
     @property
     def airline_callsign(self) -> str:
