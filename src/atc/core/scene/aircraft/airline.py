@@ -60,6 +60,7 @@ AIRLINE = {
     "CX": "Cathay Pacific",
     "NX": "Air Macau",
     "IR": "Iran Air",
+    "AI": "Air India",
 }
 """
 航空公司从二字代码到呼号的映射。
