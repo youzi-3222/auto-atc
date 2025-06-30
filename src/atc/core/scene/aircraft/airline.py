@@ -59,6 +59,7 @@ AIRLINE = {
     "JS": "Air Koryo",
     "CX": "Cathay Pacific",
     "NX": "Air Macau",
+    "IR": "Iran Air",
 }
 """
 航空公司从二字代码到呼号的映射。
