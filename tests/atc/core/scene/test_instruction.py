@@ -11,7 +11,7 @@ from src.atc.core.scene.instruction import Instruction
         (
             {
                 "flight": FlightInfo(
-                    6760, "IR", "655", True, "18L", "A30B", Wake.LIGHT
+                    "6760", "IR", "655", True, "18L", "A30B", Wake.LIGHT
                 ),
                 "speed_old_kt": 250,
                 "alt_old_ft": 5000,
@@ -28,7 +28,7 @@ from src.atc.core.scene.instruction import Instruction
         (
             {
                 "flight": FlightInfo(
-                    3674, "AF", "296Q", True, "18L", "A30B", Wake.LIGHT
+                    "3674", "AF", "296Q", True, "18L", "A30B", Wake.LIGHT
                 ),
                 "speed_old_kt": 250,
                 "alt_old_ft": 5000,
@@ -45,7 +45,7 @@ from src.atc.core.scene.instruction import Instruction
         (
             {
                 "flight": FlightInfo(
-                    7700, "3U", "8633", True, "02R", "A319", Wake.LIGHT
+                    "7700", "3U", "8633", True, "02R", "A319", Wake.LIGHT
                 ),
                 "speed_old_kt": 230,
                 "alt_old_ft": 6000,
@@ -62,7 +62,7 @@ from src.atc.core.scene.instruction import Instruction
         (
             {
                 "flight": FlightInfo(
-                    7700, "3U", "8633", True, "02R", "A319", Wake.LIGHT
+                    "7700", "3U", "8633", True, "02R", "A319", Wake.LIGHT
                 ),
                 "speed_old_kt": 230,
                 "alt_old_ft": 4000,
@@ -89,7 +89,7 @@ def test_instruction_speech(kwargs, expected):
         (
             {
                 "flight": FlightInfo(
-                    6760, "IR", "655", True, "18L", "A30B", Wake.LIGHT
+                    "6760", "IR", "655", True, "18L", "A30B", Wake.LIGHT
                 ),
                 "speed_old_kt": 250,
                 "alt_old_ft": 5000,
@@ -106,7 +106,7 @@ def test_instruction_speech(kwargs, expected):
         (
             {
                 "flight": FlightInfo(
-                    3674, "AF", "296Q", True, "18L", "A30B", Wake.LIGHT
+                    "3674", "AF", "296Q", True, "18L", "A30B", Wake.LIGHT
                 ),
                 "speed_old_kt": 250,
                 "alt_old_ft": 5000,
@@ -123,7 +123,7 @@ def test_instruction_speech(kwargs, expected):
         (
             {
                 "flight": FlightInfo(
-                    7700, "3U", "8633", True, "02R", "A319", Wake.LIGHT
+                    "7700", "3U", "8633", True, "02R", "A319", Wake.LIGHT
                 ),
                 "speed_old_kt": 230,
                 "alt_old_ft": 6000,
@@ -140,7 +140,7 @@ def test_instruction_speech(kwargs, expected):
         (
             {
                 "flight": FlightInfo(
-                    7700, "3U", "8633", True, "02R", "A319", Wake.LIGHT
+                    "7700", "3U", "8633", True, "02R", "A319", Wake.LIGHT
                 ),
                 "speed_old_kt": 230,
                 "alt_old_ft": 4000,
@@ -167,7 +167,7 @@ def test_instruction_text(kwargs, expected):
         (
             {
                 "flight": FlightInfo(
-                    6760, "IR", "655", True, "18L", "A30B", Wake.LIGHT
+                    "6760", "IR", "655", True, "18L", "A30B", Wake.LIGHT
                 ),
                 "speed_old_kt": 250,
                 "alt_old_ft": 5000,
@@ -184,7 +184,7 @@ def test_instruction_text(kwargs, expected):
         (
             {
                 "flight": FlightInfo(
-                    3674, "AF", "296Q", True, "18L", "A30B", Wake.LIGHT
+                    "3674", "AF", "296Q", True, "18L", "A30B", Wake.LIGHT
                 ),
                 "speed_old_kt": 250,
                 "alt_old_ft": 5000,
@@ -201,7 +201,7 @@ def test_instruction_text(kwargs, expected):
         (
             {
                 "flight": FlightInfo(
-                    3435, "3U", "8633", True, "02R", "A319", Wake.LIGHT
+                    "3435", "3U", "8633", True, "02R", "A319", Wake.LIGHT
                 ),
                 "speed_old_kt": 250,
                 "alt_old_ft": 5000,
@@ -218,7 +218,7 @@ def test_instruction_text(kwargs, expected):
         (
             {
                 "flight": FlightInfo(
-                    6760, "IR", "655", True, "18L", "A30B", Wake.LIGHT
+                    "6760", "IR", "655", True, "18L", "A30B", Wake.LIGHT
                 ),
                 "speed_old_kt": 180,
                 "alt_old_ft": 500,

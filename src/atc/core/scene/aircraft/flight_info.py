@@ -14,7 +14,7 @@ class FlightInfo:
     只读的航班信息，这些信息在航班过程中不会改变。
     """
 
-    ssr_code: int
+    ssr_code: str
     """SSR 代码（应答机编码）。"""
     airline: str
     """航空公司二字代码。"""
