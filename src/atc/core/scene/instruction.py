@@ -44,7 +44,7 @@ class Instruction:
             self.turn_left is None
         ), "航向与转向方向必须同时存在"
         assert (
-            self.heading is not None or self.vector_to is not None
+            self.heading is None or self.vector_to is None
         ), "航向与直飞航路点不能同时存在"
         assert not (
             self.go_around and self.clear_app_rwy is not None
@@ -157,7 +157,11 @@ class Instruction:
         return "，".join(result) + "。"
 
     def _speech_en(self) -> str:
-        result = [self.flight.flight_no]
+        result = [
+            self.flight.airline_callsign
+            + " "
+            + Speech.explain_en(self.flight.raw_flight_no)
+        ]
         if self.go_around:
             result.append("go around")
         if self.heading is not None:
