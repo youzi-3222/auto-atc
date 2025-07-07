@@ -6,8 +6,8 @@ import math
 
 from pygame import Vector2
 
-from src.atc.config import _Rwy
-from src.atc.const import RESOLUTION, RWY_LENGTH
+from atc.config import _Rwy
+from atc.const import RESOLUTION, RWY_LENGTH
 
 
 class Rwy:

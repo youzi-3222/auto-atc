@@ -2,10 +2,12 @@
 航班相关信息。
 """
 
+import random
 from dataclasses import dataclass
 
-from src.atc.core.scene.aircraft.airline import AIRLINE
-from src.atc.core.scene.aircraft.wake import Wake
+from atc.core.scene.aircraft.aircraft_type import AIRCRAFT_TYPE
+from atc.core.scene.aircraft.airline import AIRLINE
+from atc.core.scene.aircraft.wake import Wake
 
 
 @dataclass
@@ -43,3 +45,20 @@ class FlightInfo:
     def chinese(self) -> bool:
         """是否可以使用中文管制。"""
         return not self.airline_callsign.isascii()
+
+    @staticmethod
+    def random(arrival: bool, rwys: list[str]):
+        """
+        生成一个随机的航班信息。
+        """
+        ssr_code = oct(random.randint(0o0, 0o6777))[2:].zfill(4)
+        airline = random.choice(list(AIRLINE.keys()))
+        raw_flight_no = str(random.randint(100, 9999)).zfill(4)
+        rwy = random.choice(rwys)
+        aircraft_type = random.choice(AIRCRAFT_TYPE)
+        wake = random.choices(
+            [Wake.LIGHT, Wake.MEDIUM, Wake.HEAVY], weights=[0.5, 0.3, 0.2]
+        )[0]
+        return FlightInfo(
+            ssr_code, airline, raw_flight_no, arrival, rwy, aircraft_type, wake
+        )

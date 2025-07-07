@@ -1,6 +1,6 @@
 import pytest
 
-from src.atc.core.speech import Speech
+from atc.core.speech import Speech
 
 
 @pytest.mark.parametrize(

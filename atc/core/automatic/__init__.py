@@ -2,7 +2,7 @@
 自动管理。
 """
 
-from src.atc.core.scene import Scene
+from atc.core.scene import Scene
 
 from .base import IAutoManagement
 

@@ -4,7 +4,7 @@
 
 from datetime import datetime, timedelta
 
-from src.atc.config import config
+from atc.config import config
 
 from .aircraft import Aircraft
 from .route import Route

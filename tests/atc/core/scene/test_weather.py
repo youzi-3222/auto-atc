@@ -3,7 +3,7 @@ from unittest.mock import MagicMock
 
 import pytest
 
-from src.atc.core.scene.weather import Cloud, CloudType, Weather
+from atc.core.scene.weather import Cloud, CloudType, Weather
 
 
 # 测试 Cloud 类

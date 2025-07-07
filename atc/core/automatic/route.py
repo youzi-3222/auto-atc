@@ -2,8 +2,8 @@
 自动航路管理。
 """
 
-from src.atc.core.automatic.base import IAutoManagement
-from src.atc.core.scene import Scene
+from atc.core.automatic.base import IAutoManagement
+from atc.core.scene import Scene
 
 
 class AutoRoute(IAutoManagement):

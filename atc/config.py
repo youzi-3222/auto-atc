@@ -6,7 +6,7 @@ import json
 from enum import Enum
 from typing import TypedDict
 
-from src.atc.const import CONFIG_PATH
+from atc.const import CONFIG_PATH
 
 
 class RwyUsage(Enum):

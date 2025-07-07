@@ -1,6 +1,6 @@
 import pytest
 
-from src.atc.core.scene.aircraft.airline import AIRLINE
+from atc.core.scene.aircraft.airline import AIRLINE
 
 
 @pytest.mark.parametrize(

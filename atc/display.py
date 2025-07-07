@@ -8,8 +8,8 @@ from typing import Union
 import pygame
 from pygame import Vector2
 
-from src.atc.core.automatic import Automatic
-from src.atc.const import MAX_FPS, RESOLUTION, RWY_COLOR, RWY_LOC_LENGTH
+from atc.const import MAX_FPS, RESOLUTION, RWY_COLOR, RWY_LOC_LENGTH
+from atc.core.automatic import Automatic
 
 
 class MainWindow:

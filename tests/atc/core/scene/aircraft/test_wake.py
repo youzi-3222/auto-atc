@@ -1,4 +1,4 @@
-from src.atc.core.scene.aircraft.wake import Wake
+from atc.core.scene.aircraft.wake import Wake
 
 
 def test_wake_enum():

@@ -1,8 +1,8 @@
 import pytest
 
-from src.atc.core.scene.aircraft.flight_info import FlightInfo
-from src.atc.core.scene.aircraft.wake import Wake
-from src.atc.core.scene.instruction import Instruction
+from atc.core.scene.aircraft.flight_info import FlightInfo
+from atc.core.scene.aircraft.wake import Wake
+from atc.core.scene.instruction import Instruction
 
 
 @pytest.mark.parametrize(

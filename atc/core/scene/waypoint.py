@@ -4,8 +4,8 @@
 
 from pygame import Vector2
 
-from src.atc.config import _WayPoint
-from src.atc.const import RESOLUTION
+from atc.config import _WayPoint
+from atc.const import RESOLUTION
 
 
 class WayPoint:

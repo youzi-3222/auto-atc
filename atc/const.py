@@ -25,5 +25,5 @@ WEATHER_REFRESH_TIMEOUT: int = 10 * 60
 """天气信息刷新间隔，秒。"""
 
 # 路径
-CONFIG_PATH = Path("./src/static/config.json")
+CONFIG_PATH = Path("./static/config.json")
 """`./static/config.json` 路径。"""

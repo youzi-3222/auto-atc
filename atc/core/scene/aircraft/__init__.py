@@ -9,11 +9,11 @@ from typing import Union, overload
 from pygame import Vector2
 from sympy import Symbol
 
-from src.atc.core.scene.aircraft.airline import AIRLINE
-from src.atc.core.scene.aircraft.flight_info import FlightInfo
-from src.atc.core.scene.instruction import Instruction
-from src.atc.core.scene.route import Route
-from src.atc.core.scene.waypoint import WayPoint
+from atc.core.scene.aircraft.airline import AIRLINE
+from atc.core.scene.aircraft.flight_info import FlightInfo
+from atc.core.scene.instruction import Instruction
+from atc.core.scene.route import Route
+from atc.core.scene.waypoint import WayPoint
 
 
 class Aircraft:
@@ -59,9 +59,10 @@ class Aircraft:
         """航向角，弧度制。"""
         return math.radians(self.heading)
 
-    def __init__(self, arrival: bool = False) -> None:
+    def __init__(self, arrival: bool, rwys: list[str], pos: Vector2) -> None:
         self.arrival = arrival
-        raise NotImplementedError
+        self.flight = FlightInfo.random(arrival, rwys)
+        self.__init_random__()
 
     def __init_random__(self) -> None:
         raise NotImplementedError

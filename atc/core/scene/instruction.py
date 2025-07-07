@@ -5,7 +5,7 @@
 from dataclasses import dataclass
 from typing import Optional
 
-from src.atc.core.speech import Speech
+from atc.core.speech import Speech
 
 from .aircraft.flight_info import FlightInfo
 

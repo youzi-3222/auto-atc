@@ -1,24 +1,21 @@
 """
-自动管理的基类。
+自动紧急情况管理。
 """
 
-from abc import ABC, abstractmethod
+from atc.core.automatic.base import IAutoManagement
+from atc.core.scene import Scene
 
-from src.atc.core.scene import Scene
 
-
-class IAutoManagement(ABC):
+class Emergency(IAutoManagement):
     """
-    自动管理的基类。
+    自动紧急情况管理。
     """
 
     scene: Scene
 
-    @abstractmethod
     def __init__(self, scene: Scene) -> None:
         raise NotImplementedError
 
-    @abstractmethod
     def manage(self):
         """
         对目标进行管理。

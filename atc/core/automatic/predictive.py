@@ -2,8 +2,8 @@
 预测式控制。
 """
 
-from src.atc.core.automatic.base import IAutoManagement
-from src.atc.core.scene import Scene
+from atc.core.automatic.base import IAutoManagement
+from atc.core.scene import Scene
 
 
 class AutoPredictive(IAutoManagement):
