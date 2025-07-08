@@ -2,11 +2,8 @@
 配置。
 """
 
-import json
 from enum import Enum
 from typing import TypedDict
-
-from atc.const import CONFIG_PATH
 
 
 class RwyUsage(Enum):
@@ -50,7 +47,7 @@ class _WayPoint(TypedDict):
     usage: WayPointUsage
 
 
-class _Config(TypedDict):
+class Config(TypedDict):
     """
     配置文件。
     """
@@ -63,7 +60,3 @@ class _Config(TypedDict):
     std_dep: dict[str, list[str]]
     arr_freq: float
     dep_freq: float
-
-
-with CONFIG_PATH.open("r", encoding="utf-8") as f:
-    config: _Config = json.load(f)

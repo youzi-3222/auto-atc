@@ -9,11 +9,14 @@ from typing import Union, overload
 from pygame import Vector2
 from sympy import Symbol
 
-from atc.core.scene.aircraft.airline import AIRLINE
-from atc.core.scene.aircraft.flight_info import FlightInfo
+from atc.config import _Rwy
 from atc.core.scene.instruction import Instruction
 from atc.core.scene.route import Route
+from atc.core.scene.rwy import Rwy
 from atc.core.scene.waypoint import WayPoint
+
+from .airline import AIRLINE
+from .flight_info import FlightInfo
 
 
 class Aircraft:
@@ -46,7 +49,7 @@ class Aircraft:
 
     @property
     def airline_callsign(self) -> str:
-        """航空公司的友好输出（中文简称 / 英文简称）。"""
+        """航空公司的呼号。"""
         return self.flight.airline_callsign
 
     @property
@@ -59,13 +62,24 @@ class Aircraft:
         """航向角，弧度制。"""
         return math.radians(self.heading)
 
-    def __init__(self, arrival: bool, rwys: list[str], pos: Vector2) -> None:
-        self.arrival = arrival
-        self.flight = FlightInfo.random(arrival, rwys)
-        self.__init_random__()
-
-    def __init_random__(self) -> None:
-        raise NotImplementedError
+    def __init__(
+        self,
+        flight: FlightInfo,
+        pos: Vector2,
+        waypoint: list[WayPoint],
+        height_ft: int,
+        speed_kt: int,
+    ) -> None:
+        # rwy_list = []
+        # for r in [Rwy(r) for r in rwy]:
+        #     rwy_list.append(r.num)
+        #     rwy_list.append(r.num_rev)
+        # self.flight = FlightInfo.random(arrival, rwy_list)
+        self.flight = flight
+        self.pos = pos
+        self.waypoint = waypoint
+        self.height_ft = height_ft
+        self.speed_kt = speed_kt
 
     def instruct(self, instruction: Instruction) -> None:
         """

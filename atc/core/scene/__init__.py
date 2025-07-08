@@ -4,7 +4,7 @@
 
 from datetime import datetime, timedelta
 
-from atc.config import config
+from atc.config import _Rwy, _WayPoint
 
 from .aircraft import Aircraft
 from .route import Route
@@ -24,6 +24,11 @@ class Scene:
     """航路点列表。"""
     route: list[Route]
     """航路列表。"""
+    arr_freq: float
+    """进场航班生成频率，单位为每分钟航班数。"""
+    dep_freq: float
+    """离场航班生成频率，单位为每分钟航班数。"""
+
     aircraft: dict[str, Aircraft]
     """航班号及对应航班列表。"""
     last_arr: datetime
@@ -33,9 +38,15 @@ class Scene:
     weather: Weather
     """天气。"""
 
-    def __init__(self) -> None:
-        self.rwy = [Rwy(rwy) for rwy in config["rwy"]]
-        self.waypoint = [WayPoint(wp) for wp in config["waypoint"]]
+    def __init__(
+        self,
+        rwy: list[_Rwy],
+        waypoint: list[_WayPoint],
+        arr_freq: float,
+        dep_freq: float,
+    ) -> None:
+        self.rwy = [Rwy(r) for r in rwy]
+        self.waypoint = [WayPoint(w) for w in waypoint]
         raise NotImplementedError
 
     def run_tick(self):
@@ -48,7 +59,7 @@ class Scene:
         """
         生成新航班。
         """
-        if datetime.now() - self.last_arr > timedelta(seconds=60 / config["arr_freq"]):
+        if datetime.now() - self.last_arr > timedelta(seconds=60 / self.arr_freq):
             aircraft = Aircraft()
             self.aircraft[aircraft.flight.flight_no] = aircraft
             self.last_arr = datetime.now()
