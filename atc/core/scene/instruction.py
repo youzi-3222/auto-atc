@@ -34,8 +34,8 @@ class Instruction:
     """速度，节。"""
     alt_ft: Optional[int]
     """放行高度，英尺。"""
-    clear_app_rwy: Optional[str]
-    """允许进近的跑道编号。"""
+    clear_app: bool = False
+    """是否允许进近，默认为 False。"""
     go_around: bool = False
     """是否为复飞指令，默认为 False。"""
 
@@ -47,7 +47,7 @@ class Instruction:
             self.heading is None or self.vector_to is None
         ), "航向与直飞航路点不能同时存在"
         assert not (
-            self.go_around and self.clear_app_rwy is not None
+            self.go_around and self.clear_app is not None
         ), "复飞指令不能允许进近"
         if self.speed_kt == self.speed_old_kt:
             self.speed_kt = None
@@ -88,8 +88,8 @@ class Instruction:
                 f"{round(self._ft2m(self.alt_ft) if self.use_m else self.alt_ft, -2)} "
                 f"{'米' if self.use_m else '英尺'}"
             )
-        if self.clear_app_rwy is not None:
-            result.append(f"ILS 进近跑道 {self.clear_app_rwy}")
+        if self.clear_app:
+            result.append(f"ILS 进近跑道 {self.flight.rwy}")
         return "，".join(result) + "。"
 
     def _text_en(self):
@@ -115,8 +115,8 @@ class Instruction:
                 f"{self._ft2m(self.alt_ft) if self.use_m else self.alt_ft} "
                 f"{'meters' if self.use_m else 'feet'}"
             )
-        if self.clear_app_rwy is not None:
-            result.append(f"cleared ILS runway {self.clear_app_rwy}")
+        if self.clear_app:
+            result.append(f"cleared ILS runway {self.flight.rwy}")
         return ", ".join(result) + "."
 
     @property
@@ -152,8 +152,8 @@ class Instruction:
             result.append(
                 f"{'下' if self.alt_old_ft > self.alt_ft else '上'}高度{Speech.explain_zh(alt)}"
             )
-        if self.clear_app_rwy is not None:
-            result.append(f"ILS 进近跑道 {Speech.explain_rwy_zh(self.clear_app_rwy)}")
+        if self.clear_app:
+            result.append(f"ILS 进近跑道 {Speech.explain_rwy_zh(self.flight.rwy)}")
         return "，".join(result) + "。"
 
     def _speech_en(self) -> str:
@@ -183,8 +183,8 @@ class Instruction:
                 f"{'descend' if self.alt_old_ft > self.alt_ft else 'climb'} to "
                 f"{Speech.explain_en(alt)}"
             )
-        if self.clear_app_rwy is not None:
+        if self.clear_app:
             result.append(
-                f"cleared ILS runway {Speech.explain_rwy_en(self.clear_app_rwy)}"
+                f"cleared ILS runway {Speech.explain_rwy_en(self.flight.rwy)}"
             )
         return ", ".join(result) + "."
