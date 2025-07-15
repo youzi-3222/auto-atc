@@ -55,8 +55,9 @@ class Config(TypedDict):
     icao: str
     rwy: list[_Rwy]
     rwy_usage: dict[str, RwyUsage]
-    waypoint: list[_WayPoint]
+    waypoint: dict[str, _WayPoint]
     std_arr: dict[str, list[str]]
     std_dep: dict[str, list[str]]
     arr_freq: float
     dep_freq: float
+    nm_per_pixel: float

@@ -24,15 +24,15 @@ class Instruction:
     """旧的高度，英尺。"""
     use_m: bool
     """是否使用米作为高度单位。"""
-    heading: Optional[int]
+    heading: Optional[int] = None
     """航向。"""
-    turn_left: Optional[bool]
+    turn_left: Optional[bool] = None
     """是否左转。"""
-    vector_to: Optional[list[str]]
+    vector_to: Optional[list[str]] = None
     """直飞航路点。"""
-    speed_kt: Optional[int]
+    speed_kt: Optional[int] = None
     """速度，节。"""
-    alt_ft: Optional[int]
+    alt_ft: Optional[int] = None
     """放行高度，英尺。"""
     clear_app: bool = False
     """是否允许进近，默认为 False。"""
@@ -46,9 +46,7 @@ class Instruction:
         assert (
             self.heading is None or self.vector_to is None
         ), "航向与直飞航路点不能同时存在"
-        assert not (
-            self.go_around and self.clear_app is not None
-        ), "复飞指令不能允许进近"
+        assert not (self.go_around and self.clear_app), "复飞指令不能允许进近"
         if self.speed_kt == self.speed_old_kt:
             self.speed_kt = None
         if self.alt_ft == self.alt_old_ft:

@@ -6,7 +6,7 @@ import math
 
 from pygame import Vector2
 
-from atc.config import _Rwy
+from atc.config_cls import _Rwy
 from atc.const import RESOLUTION, RWY_LENGTH
 
 
@@ -29,7 +29,7 @@ class Rwy:
     @property
     def direction_geo(self) -> float:
         """几何角度，弧度制。"""
-        return math.radians(270 - self.direction)
+        return math.radians(self.direction - 90)
 
     @property
     def pos2(self) -> Vector2:

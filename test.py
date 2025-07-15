@@ -1,5 +1,4 @@
-from atc.core.scene.aircraft.flight_info import FlightInfo
-from atc.core.scene.aircraft.wake import Wake
+from atc.core.scene.aircraft import FlightInfo, Wake
 from atc.core.scene.instruction import Instruction
 
 print(
@@ -14,7 +13,7 @@ print(
             "vector_to": ["MIKOS"],
             "speed_kt": 230,
             "alt_ft": 4000,
-            "clear_app_rwy": None,
+            "clear_app": None,
         }
     ).speech
 )
@@ -40,5 +39,5 @@ print(
 #                    `=---='
 #
 # .............................................
-#          佛祖保佑             中考顺利
+#         佛祖保佑             代码无 bug
 #

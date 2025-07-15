@@ -3,10 +3,10 @@
 """
 
 import json
-from pathlib import Path
 import warnings
+from pathlib import Path
 
-from .config import Config
+from .config_cls import Config
 
 warnings.filterwarnings("ignore", category=DeprecationWarning, module="pygame")
 
@@ -25,5 +25,6 @@ def set_config_path(path: str) -> None:
         raise IsADirectoryError(f"配置文件 {_config_path} 不是一个文件。")
 
 
-with _config_path.open("r", encoding="utf-8") as f:
-    config: Config = json.load(f)
+if __name__ == "__main__":
+    with _config_path.open("r", encoding="utf-8") as f:
+        config: Config = json.load(f)

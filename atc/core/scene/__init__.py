@@ -4,10 +4,9 @@
 
 from datetime import datetime, timedelta
 
-from atc.config import _Rwy, _WayPoint
+from atc.config_cls import _Rwy, _WayPoint
 
 from .aircraft import Aircraft
-from .route import Route
 from .rwy import Rwy
 from .waypoint import WayPoint
 from .weather import Weather
@@ -22,8 +21,6 @@ class Scene:
     """跑道列表。"""
     waypoint: list[WayPoint]
     """航路点列表。"""
-    route: list[Route]
-    """航路列表。"""
     arr_freq: float
     """进场航班生成频率，单位为每分钟航班数。"""
     dep_freq: float

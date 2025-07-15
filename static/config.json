@@ -25,8 +25,8 @@
         "18R": 0,
         "36L": 1
     },
-    "waypoint": [
-        {
+    "waypoint": {
+        "A": {
             "name": "A",
             "position": [
                 0.2,
@@ -34,7 +34,7 @@
             ],
             "usage": 1
         },
-        {
+        "B": {
             "name": "B",
             "position": [
                 0.8,
@@ -42,7 +42,7 @@
             ],
             "usage": 1
         },
-        {
+        "C": {
             "name": "C",
             "position": [
                 0.9,
@@ -50,7 +50,7 @@
             ],
             "usage": 2
         }
-    ],
+    },
     "std_arr": {
         "A": [
             "A"
@@ -62,5 +62,6 @@
         ]
     },
     "arr_freq": 2,
-    "dep_freq": 1.5
+    "dep_freq": 1.5,
+    "nm_per_pixel": 0.1
 }

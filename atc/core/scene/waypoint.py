@@ -2,9 +2,12 @@
 航路点。
 """
 
+from typing import Union, overload
+
 from pygame import Vector2
 
-from atc.config import _WayPoint
+from atc import config
+from atc.config_cls import _WayPoint
 from atc.const import RESOLUTION
 
 
@@ -18,7 +21,13 @@ class WayPoint:
     name: str
     """航路点名称。"""
 
-    def __init__(self, wp: _WayPoint) -> None:
+    @overload
+    def __init__(self, wp: _WayPoint) -> None: ...
+    @overload
+    def __init__(self, wp: str) -> None: ...
+    def __init__(self, wp: Union[str, _WayPoint]) -> None:
+        if isinstance(wp, str):
+            wp = config["waypoint"][wp]
         pos = wp["position"]
         if len(pos) != 2:
             raise ValueError(
